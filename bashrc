@@ -14,3 +14,5 @@ set -o vi
 
 export M2_HOME=/opt/maven
 export PATH=$M2_HOME/bin:$PATH
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

@@ -17,16 +17,19 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+"Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
+"Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
-Plugin 'user/L9', {'name': 'newL9'}
+"Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'vim-airline/vim-airline'
+Plugin 'wincent/command-t'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -50,7 +53,7 @@ filetype plugin indent on    " required
 " 自动重新加载.vimrc配置文件
 autocmd! bufwritepost .vimrc source %
 
-" 复制大块代码进入Vim之前按F2，避免缩进乱套,在状态栏能看到``-- INSERT (paste) --``
+" 复制大块代码进入Vim之前按f2，避免缩进乱套,在状态栏能看到``-- INSERT (paste) --``
 set pastetoggle=<F2>
 
 " 设置vim中默认使用选择缓冲区寄存器 "*
@@ -93,3 +96,14 @@ set ignorecase              "检索时忽略大小写
 set hls                     "检索时高亮显示匹配项
 "set cursorline              "为光标所在行加下划线
 set autoread                "文件在Vim之外修改过，自动重新读入
+
+" Config for Plugin:Command-T
+:set wildignore+=*.pyc,**/venv/**
+
+" Config for Plugin:Jedi-Vim
+let g:jedi#usages_command = "<leader>z"
+
+" Config for Plugin:NerdTree
+map <leader>l :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+let NERDTreeIgnore=['^venv$[[dir]]', '\.pyc$']
